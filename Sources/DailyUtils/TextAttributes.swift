@@ -7,6 +7,7 @@ import UIKit
 public
 struct TextAttributes {
 
+    public
     var dictionary: [NSAttributedString.Key: Any] = [:]
 
 }
