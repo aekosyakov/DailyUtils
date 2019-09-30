@@ -4,12 +4,14 @@
 
 import UIKit
 
+public
 struct TextAttributes {
 
     var dictionary: [NSAttributedString.Key: Any] = [:]
 
 }
 
+public
 extension TextAttributes {
 
     var font: UIFont? {
@@ -34,6 +36,7 @@ extension TextAttributes {
 
 }
 
+public
 extension TextAttributes {
 
     init(
@@ -56,6 +59,7 @@ extension TextAttributes {
 
 }
 
+public
 extension String {
 
     func attributed(_ attributes: TextAttributes) -> NSAttributedString {
