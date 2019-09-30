@@ -84,3 +84,63 @@ extension UIColor {
 
 }
 
+public
+extension String {
+    
+    func localized(with locale: String?) -> String {
+        guard let locale = locale else {
+            return self
+        }
+        return appendingFormat("_%@", locale)
+    }
+    
+}
+
+public
+extension Dictionary where Key == String {
+    
+    func string(for key: String, locale: String?) -> String? {
+        let localizedKey = key.localized(with: locale)
+        if let value = self[localizedKey] as? String {
+            return value
+        }
+        if let value = self[key] as? String{
+            return value;
+        }
+        return "n/a"
+    }
+    
+}
+
+public
+extension NSRange {
+
+    func contains(index: Int) -> Bool {
+        return index > location && index < location + length
+    }
+
+}
+
+public
+extension UILabel {
+
+    func indexOfCharInAttributedText(at point: CGPoint) -> Int? {
+        guard let attributedText = attributedText else {
+            return nil
+        }
+        let textStorage = NSTextStorage(attributedString: attributedText)
+        let layoutManager = NSLayoutManager()
+        textStorage.addLayoutManager(layoutManager)
+        let textContainer = NSTextContainer(size: bounds.size)
+        textContainer.lineFragmentPadding = 0
+        textContainer.maximumNumberOfLines = numberOfLines
+        textContainer.lineBreakMode = lineBreakMode
+        layoutManager.addTextContainer(textContainer)
+        return layoutManager.characterIndex(for: point, in: textContainer, fractionOfDistanceBetweenInsertionPoints: nil)
+    }
+
+}
+
+
+
+
