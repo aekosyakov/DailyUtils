@@ -104,10 +104,32 @@ extension Dictionary where Key == String {
         if let value = self[localizedKey] as? String {
             return value
         }
-        if let value = self[key] as? String{
+        if let value = self[key] as? String {
             return value;
         }
         return "n/a"
+    }
+
+    func int(for key: String, locale: String?) -> Int {
+        let localizedKey = key.localized(with: locale)
+        if let value = self[localizedKey] as? Int {
+            return value
+        }
+        if let value = self[key] as? Int {
+            return value
+        }
+        return 0
+    }
+
+    func float(for key: String, locale: String?) -> Float {
+        let localizedKey = key.localized(with: locale)
+        if let value = self[localizedKey] as? Float {
+            return value
+        }
+        if let value = self[key] as? Float {
+            return value
+        }
+        return 0
     }
     
 }
@@ -139,6 +161,25 @@ extension UILabel {
         return layoutManager.characterIndex(for: point, in: textContainer, fractionOfDistanceBetweenInsertionPoints: nil)
     }
 
+}
+
+public
+extension UIImageView {
+
+    func load(url: URL?) {
+        DispatchQueue.global().async { [weak self] in
+            guard
+                let url = url,
+                let data =  try? Data(contentsOf: url),
+                let image = UIImage(data: data)
+            else {
+                return
+            }
+            DispatchQueue.main.async {
+                self?.image = image
+            }
+        }
+    }
 }
 
 
