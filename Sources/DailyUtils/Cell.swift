@@ -1,6 +1,5 @@
 import UIKit
 
-
 open
 class Cell: UITableViewCell {
 
