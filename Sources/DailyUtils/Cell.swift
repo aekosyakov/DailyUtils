@@ -16,7 +16,7 @@ class Cell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
-    static
+    public static
     var cellID: String {
         return NSStringFromClass(Self.self)
     }
