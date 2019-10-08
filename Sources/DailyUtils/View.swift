@@ -20,6 +20,7 @@ class View: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    open func initialize() { }
+    open
+    func initialize() { }
 
 }

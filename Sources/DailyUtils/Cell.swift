@@ -21,6 +21,7 @@ class Cell: UITableViewCell {
         return NSStringFromClass(Self.self)
     }
 
+    open
     func initialize() { }
 
 }
