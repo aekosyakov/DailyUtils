@@ -183,6 +183,35 @@ extension UIImageView {
 
 }
 
+public
+extension Double {
+    func truncate(places: Int) -> Double {
+        return Double(floor(pow(10.0, Double(places)) * self)/pow(10.0, Double(places)))
+    }
+}
 
+public
+extension Int {
 
+    func roundToK() -> String {
+        let formatter = NumberFormatter().with {
+            $0.numberStyle = .decimal
+            $0.decimalSeparator = "."
+            $0.roundingMode = .halfUp
+        }
+        let doubleValue = abs(Double(self))
+        let sign = (self < 0) ? "-" : ""
 
+        switch doubleValue {
+        case 1_000_000_000...:
+            return "\(sign)\((doubleValue / 1_000_000_000).truncate(places: 1))B"
+        case 1_000_000...:
+            return "\(sign)\((doubleValue / 1_000_000).truncate(places: 1))M"
+        case 1_000...:
+            return "\(sign)\((doubleValue / 1_000).truncate(places: 1))K"
+        default:
+            return "\(sign)\(formatter.string(from: NSNumber(value: self)) ?? "\(self)")"
+        }
+    }
+
+}
