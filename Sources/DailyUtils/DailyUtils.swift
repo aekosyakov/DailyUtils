@@ -100,7 +100,6 @@ public
 extension Dictionary where Key == String {
     
     func string(for key: String, locale: String?) -> String? {
-        return
         let localizedKey = key.localized(with: locale)
         return self[localizedKey] as? String ?? self[key] as? String
     }
