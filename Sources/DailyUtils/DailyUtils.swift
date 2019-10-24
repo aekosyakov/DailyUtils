@@ -104,6 +104,21 @@ extension Dictionary where Key == String {
         return self[localizedKey] as? String ?? self[key] as? String
     }
 
+
+    func nsstring(for key: String, locale: String?) -> NSString? {
+        let localizedKey = key.localized(with: locale)
+        return self[localizedKey] as? NSString ?? self[key] as? NSString
+    }
+
+    func array(for key: String, locale: String?) -> Array<Any>? {
+        let localizedKey = key.localized(with: locale)
+        return self[localizedKey] as? Array ?? self[key] as? Array
+    }
+
+    func dictionary(for key: String) -> Self? {
+        return self[key] as? Self
+    }
+
     func int(for key: String, locale: String?) -> Int {
         let localizedKey = key.localized(with: locale)
         if let value = self[localizedKey] as? Int {
@@ -206,6 +221,16 @@ extension Int {
         default:
             return "\(sign)\(formatter.string(from: NSNumber(value: self)) ?? "\(self)")"
         }
+    }
+
+}
+
+
+public
+extension UIImage {
+
+    var isHorizontal: Bool {
+        return size.width > size.height
     }
 
 }
