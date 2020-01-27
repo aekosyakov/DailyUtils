@@ -3,6 +3,7 @@ import UIKit
 public
 class GradientLabel: UILabel {
 
+    public
     var gradientColors: [CGColor] = []
 
     override public
