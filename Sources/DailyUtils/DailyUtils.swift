@@ -34,6 +34,28 @@ extension UIView {
         layer.add(shakeAnimation, forKey: "transform")
     }
 
+    func flashAnimation() {
+        let flash = CABasicAnimation(keyPath: "opacity")
+        flash.duration = 1.0
+        flash.fromValue = 0.85
+        flash.toValue = 1
+        flash.timingFunction = CAMediaTimingFunction(name: .linear)
+        flash.autoreverses = true
+        flash.repeatCount = 100
+        layer.add(flash, forKey: nil)
+    }
+
+    func scaleAnimation() {
+        let flash = CABasicAnimation(keyPath: "transform.scale")
+        flash.duration = 1.0
+        flash.fromValue = 1
+        flash.toValue = 1.15
+        flash.timingFunction = CAMediaTimingFunction(name: .linear)
+        flash.autoreverses = true
+        flash.repeatCount = 100
+        layer.add(flash, forKey: nil)
+    }
+
 }
 
 public
@@ -190,6 +212,24 @@ extension UIImageView {
         }
     }
 
+    func motionEffect(_ inset: CGFloat) {
+        let min = CGFloat(-inset)
+        let max = CGFloat(inset)
+
+        let xMotion = UIInterpolatingMotionEffect(keyPath: "layer.transform.translation.x", type: .tiltAlongHorizontalAxis)
+        xMotion.minimumRelativeValue = min
+        xMotion.maximumRelativeValue = max
+
+        let yMotion = UIInterpolatingMotionEffect(keyPath: "layer.transform.translation.y", type: .tiltAlongVerticalAxis)
+        yMotion.minimumRelativeValue = min
+        yMotion.maximumRelativeValue = max
+
+        let motionEffectGroup = UIMotionEffectGroup()
+        motionEffectGroup.motionEffects = [xMotion,yMotion]
+
+        addMotionEffect(motionEffectGroup)
+    }
+
 }
 
 public
@@ -234,3 +274,28 @@ extension UIImage {
     }
 
 }
+
+public
+extension UIApplication {
+
+    func openAppSettings() {
+        if let settingsURL = URL(string: Self.openSettingsURLString), canOpenURL(settingsURL) {
+            openURL(settingsURL)
+        }
+    }
+
+}
+
+public
+extension UIViewController {
+
+    func closeAnimated() {
+        if presentingViewController != nil {
+            dismiss(animated: true, completion: nil)
+        } else  {
+            navigationController?.popViewController(animated: true)
+        }
+    }
+
+}
+
