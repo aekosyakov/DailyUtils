@@ -41,7 +41,7 @@ extension UIView {
         flash.toValue = 1
         flash.timingFunction = CAMediaTimingFunction(name: .linear)
         flash.autoreverses = true
-        flash.repeatCount = 100
+        flash.repeatCount = .infinity
         layer.add(flash, forKey: nil)
     }
 
@@ -52,7 +52,7 @@ extension UIView {
         flash.toValue = 1.15
         flash.timingFunction = CAMediaTimingFunction(name: .linear)
         flash.autoreverses = true
-        flash.repeatCount = 100
+        flash.repeatCount = .infinity
         layer.add(flash, forKey: nil)
     }
 
