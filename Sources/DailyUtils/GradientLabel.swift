@@ -5,8 +5,8 @@ class GradientLabel: UILabel {
 
     var gradientColors: [CGColor] = []
 
-    override
-    public func drawText(in rect: CGRect) {
+    override public
+    func drawText(in rect: CGRect) {
         if let gradientColor = drawGradient(colors: gradientColors, in: rect) {
             self.textColor = gradientColor
         }
