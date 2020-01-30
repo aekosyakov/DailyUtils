@@ -5,10 +5,15 @@ struct UIMultiplier {
 
     let baseWidth: CGFloat
 
+    public
     var value: CGFloat {
         return UIScreen.main.bounds.width/baseWidth
     }
 
+    public
+    init(baseWidth: CGFloat) {
+        self.baseWidth = baseWidth
+    }
 }
 
 public
