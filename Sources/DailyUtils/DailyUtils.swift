@@ -1,6 +1,17 @@
 import UIKit
 
 public
+struct UIMultiplier {
+
+    let baseWidth: CGFloat
+
+    var value: CGFloat {
+        return UIScreen.main.bounds.width/baseWidth
+    }
+
+}
+
+public
 extension UIView {
 
     func addSubviews(_ subviews: UIView...) {
